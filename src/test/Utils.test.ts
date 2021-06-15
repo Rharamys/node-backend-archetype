@@ -10,6 +10,8 @@ describe('Utils test suite', () => {
         console.log("before each")
     })
 
+    test.todo('todo test')
+
     test('First test', () => {
         const result = Utils.toUpperCase("abc");
         expect(result).toBe("ABC")
@@ -34,5 +36,25 @@ describe('Utils test suite', () => {
         expect(parsedUrl.query).toEqual(expectedQuery);
     });
 
-    test.todo('Test not implemented yet')
+    test('Parse empty url test', () => {
+        function expectError() {
+            Utils.parseUrl('')
+        }
+        expect(expectError).toThrow('Empty url!')
+    })
+
+    test('Parse empty url test with try catch', () => {
+        try {
+            Utils.parseUrl('')
+        } catch (error) {
+            expect(error).toBeInstanceOf(Error)
+            expect(error).toHaveProperty('message', 'Empty url!')
+        }
+        
+        
+        function expectError() {
+            Utils.parseUrl('')
+        }
+        expect(expectError).toThrow('Empty url!')
+    })
 });
